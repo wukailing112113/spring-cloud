@@ -2,6 +2,7 @@ package cn.kl.springcloud.feign.service;
 
 import cn.kl.springcloud.enty.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +24,18 @@ import java.util.List;
 @FeignClient(name = "USER-SERVICE")
 public interface UserFeignService {
 
+    /**
+     * 获取用户集合
+     * @return
+     */
     @RequestMapping(value = "/user/list",method = RequestMethod.GET)
     public List<User> getAllUser();
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/user/delete/{id}")
+    public String deleteUser(@PathVariable("id") Integer id);
 }

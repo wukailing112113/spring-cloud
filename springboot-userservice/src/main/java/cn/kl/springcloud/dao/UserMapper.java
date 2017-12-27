@@ -1,6 +1,7 @@
 package cn.kl.springcloud.dao;
 
 import cn.kl.springcloud.enty.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -14,4 +15,7 @@ public interface UserMapper {
 
     @Select("select * from user")
     public List<User> getAllUser();
+
+    @Delete("delete from user where id = #{id}")
+    public boolean deleteUserById(Integer id);
 }

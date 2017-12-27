@@ -28,4 +28,9 @@ public class UserServiceImpl implements IUserService {
         logger.info("查询所有用户的信息");
         return userMapper.getAllUser();
     }
+
+    @Override
+    public boolean deleteUserById(Integer id) {
+        return userMapper.deleteUserById(id);
+    }
 }

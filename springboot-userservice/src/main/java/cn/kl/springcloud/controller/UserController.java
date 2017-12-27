@@ -3,6 +3,7 @@ package cn.kl.springcloud.controller;
 import cn.kl.springcloud.enty.User;
 import cn.kl.springcloud.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,15 @@ public class UserController {
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<User> getAllUser(){
         return userService.getAllUser();
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Integer id){
+        boolean isTrue = userService.deleteUserById(id);
+        if(isTrue){
+            return "success";
+        }
+        return "fail";
     }
 
 }
